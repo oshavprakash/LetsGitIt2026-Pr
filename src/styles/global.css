@@ -1,66 +1,455 @@
 @import "tailwindcss";
 
+/* ============================================
+   🎨 NEOBRUTALISM DESIGN SYSTEM
+   Bold. Loud. Unapologetic.
+   ============================================ */
+
 @theme {
   --font-syne: 'Syne', sans-serif;
   --font-clash: 'Clash Display', sans-serif;
   --font-space: 'Space Grotesk', sans-serif;
   --font-archivo: 'Archivo Black', sans-serif;
+  --font-mono: 'Space Mono', monospace;
+  --font-bebas: 'Bebas Neue', sans-serif;
+  
+  /* Marquee animations */
+  --animate-marquee: marquee 20s linear infinite;
+  --animate-marquee-reverse: marquee-reverse 20s linear infinite;
+  --animate-marquee-vertical: marquee-vertical 15s linear infinite;
 }
 
+/* ============================================
+   🎨 COLOR PALETTES - 7 BOLD THEMES
+   ============================================ */
+
 :root {
-  /* Define colors explicitly for use in variables */
+  /* Raw Colors */
   --color-lime: #a3e635;
   --color-hotpink: #ff69b4;
   --color-purple: #8b5cf6;
   --color-blue: #3b82f6;
   --color-yellow: #facc15;
   --color-red: #ef4444;
-  --color-black: #000;
-  --color-white: #fff;
+  --color-black: #000000;
+  --color-white: #ffffff;
   --color-cream: #fef9c3;
   --color-orange: #f97316;
-
-  /* Default Theme (Lime) */
+  --color-cyan: #22d3d1;
+  --color-coral: #ff6b6b;
+  --color-mint: #10b981;
+  --color-magenta: #e879f9;
+  --color-neon: #39ff14;
+  --color-indigo: #6366f1;
+  
+  /* Default (Lime) */
   --bg-main: var(--color-lime);
+  --bg-secondary: var(--color-white);
   --text-main: var(--color-black);
   --accent: var(--color-hotpink);
   --secondary: var(--color-purple);
   --border-color: var(--color-black);
-
-  --shadow-hard: 5px 5px 0px 0px var(--color-black);
-  --shadow-hard-hover: 2px 2px 0px 0px var(--color-black);
+  
+  /* Neobrutalism Design Tokens */
+  --border-width: 3px;
+  --border-width-thick: 4px;
+  --border-width-extra: 6px;
+  --radius-none: 0px;
+  --radius-sm: 5px;
+  --radius-md: 10px;
+  --radius-lg: 15px;
+  
+  /* Hard Shadows - The Brutalist Signature */
+  --shadow-brutal: 4px 4px 0px 0px var(--color-black);
+  --shadow-brutal-md: 6px 6px 0px 0px var(--color-black);
+  --shadow-brutal-lg: 8px 8px 0px 0px var(--color-black);
+  --shadow-brutal-xl: 12px 12px 0px 0px var(--color-black);
+  --shadow-brutal-accent: 6px 6px 0px 0px var(--accent);
+  --shadow-brutal-secondary: 6px 6px 0px 0px var(--secondary);
+  
+  /* Transitions */
+  --transition-brutal: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
-/* Theme Classes */
+/* ============================================
+   🌈 THEME 1: LIME PUNCH (Default)
+   ============================================ */
 .theme-lime {
   --bg-main: var(--color-lime);
+  --bg-secondary: var(--color-white);
   --text-main: var(--color-black);
   --accent: var(--color-hotpink);
   --secondary: var(--color-purple);
 }
 
+/* ============================================
+   🌈 THEME 2: PURPLE HAZE
+   ============================================ */
 .theme-purple {
   --bg-main: var(--color-purple);
+  --bg-secondary: var(--color-cream);
   --text-main: var(--color-cream);
   --accent: var(--color-orange);
   --secondary: var(--color-lime);
 }
 
+/* ============================================
+   🌈 THEME 3: OCEAN BLUE
+   ============================================ */
 .theme-blue {
   --bg-main: var(--color-blue);
+  --bg-secondary: var(--color-white);
   --text-main: var(--color-white);
   --accent: var(--color-yellow);
   --secondary: var(--color-red);
 }
 
+/* ============================================
+   🌈 THEME 4: CORAL REEF
+   ============================================ */
+.theme-coral {
+  --bg-main: var(--color-coral);
+  --bg-secondary: var(--color-white);
+  --text-main: var(--color-black);
+  --accent: var(--color-cyan);
+  --secondary: var(--color-yellow);
+}
+
+/* ============================================
+   🌈 THEME 5: MINT FRESH
+   ============================================ */
+.theme-mint {
+  --bg-main: var(--color-mint);
+  --bg-secondary: var(--color-white);
+  --text-main: var(--color-black);
+  --accent: var(--color-magenta);
+  --secondary: var(--color-yellow);
+}
+
+/* ============================================
+   🌈 THEME 6: SUNBURST YELLOW
+   ============================================ */
+.theme-yellow {
+  --bg-main: var(--color-yellow);
+  --bg-secondary: var(--color-white);
+  --text-main: var(--color-black);
+  --accent: var(--color-red);
+  --secondary: var(--color-indigo);
+}
+
+/* ============================================
+   🌈 THEME 7: CYBER NOIR
+   ============================================ */
+.theme-cyber {
+  --bg-main: var(--color-black);
+  --bg-secondary: #1a1a1a;
+  --text-main: var(--color-neon);
+  --accent: var(--color-neon);
+  --secondary: var(--color-cyan);
+  --border-color: var(--color-neon);
+}
+
+.theme-cyber .brutal-border {
+  border-color: var(--color-neon) !important;
+}
+
+/* ============================================
+   🎭 BASE STYLES
+   ============================================ */
+
 body {
   background-color: var(--bg-main);
   color: var(--text-main);
   font-family: 'Space Grotesk', sans-serif;
-  transition: background-color 0.3s, color 0.3s;
+  transition: background-color 0.5s ease, color 0.3s ease;
+  overflow-x: hidden;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Archivo Black', sans-serif;
   text-transform: uppercase;
+  letter-spacing: -0.02em;
+}
+
+/* ============================================
+   🎬 KEYFRAME ANIMATIONS
+   ============================================ */
+
+/* Marquee Animations */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
+@keyframes marquee-reverse {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(0); }
+}
+
+@keyframes marquee-vertical {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-100%); }
+}
+
+/* Wobble Animation - Continuous subtle rotation */
+@keyframes wobble {
+  0%, 100% { transform: rotate(-2deg); }
+  50% { transform: rotate(2deg); }
+}
+
+/* Float Animation - Upward bobbing */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+/* Shake Animation - Quick shake */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-4px); }
+  20%, 40%, 60%, 80% { transform: translateX(4px); }
+}
+
+/* Pop Animation - Button press effect */
+@keyframes pop {
+  0% { transform: scale(1); }
+  50% { transform: scale(0.95); }
+  100% { transform: scale(1); }
+}
+
+/* Bounce In Animation */
+@keyframes bounce-in {
+  0% { transform: scale(0); opacity: 0; }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Slide Up Animation */
+@keyframes slide-up {
+  0% { transform: translateY(40px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+/* Glitch Animation - RGB split effect */
+@keyframes glitch {
+  0% {
+    text-shadow: 2px 2px var(--accent), -2px -2px var(--secondary);
+    transform: translate(0);
+  }
+  20% {
+    text-shadow: -2px 2px var(--accent), 2px -2px var(--secondary);
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    text-shadow: 2px -2px var(--accent), -2px 2px var(--secondary);
+    transform: translate(2px, -2px);
+  }
+  60% {
+    text-shadow: -2px -2px var(--accent), 2px 2px var(--secondary);
+    transform: translate(-2px, -2px);
+  }
+  80% {
+    text-shadow: 2px 2px var(--accent), -2px -2px var(--secondary);
+    transform: translate(2px, 2px);
+  }
+  100% {
+    text-shadow: 2px 2px var(--accent), -2px -2px var(--secondary);
+    transform: translate(0);
+  }
+}
+
+/* Spin Slow Animation */
+@keyframes spin-slow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Pulse Scale Animation */
+@keyframes pulse-scale {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* Wiggle Animation */
+@keyframes wiggle {
+  0%, 100% { transform: rotate(-3deg) scale(1); }
+  25% { transform: rotate(3deg) scale(1.02); }
+  50% { transform: rotate(-3deg) scale(1); }
+  75% { transform: rotate(3deg) scale(0.98); }
+}
+
+/* ============================================
+   🎯 UTILITY CLASSES
+   ============================================ */
+
+/* Animation Utilities */
+.animate-wobble {
+  animation: wobble 3s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-shake {
+  animation: shake 0.5s ease-in-out;
+}
+
+.animate-pop {
+  animation: pop 0.3s ease-in-out;
+}
+
+.animate-bounce-in {
+  animation: bounce-in 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+
+.animate-slide-up {
+  animation: slide-up 0.5s ease-out forwards;
+}
+
+.animate-glitch {
+  animation: glitch 0.3s ease-in-out;
+}
+
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
+}
+
+.animate-pulse-scale {
+  animation: pulse-scale 2s ease-in-out infinite;
+}
+
+.animate-wiggle {
+  animation: wiggle 2s ease-in-out infinite;
+}
+
+.animate-marquee {
+  animation: var(--animate-marquee);
+}
+
+.animate-marquee-reverse {
+  animation: var(--animate-marquee-reverse);
+}
+
+/* Hover Animation Triggers */
+.hover-shake:hover {
+  animation: shake 0.5s ease-in-out;
+}
+
+.hover-glitch:hover {
+  animation: glitch 0.3s ease-in-out infinite;
+}
+
+.hover-wobble:hover {
+  animation: wobble 0.5s ease-in-out;
+}
+
+/* Brutal Box Styles */
+.brutal-box {
+  border: var(--border-width-thick) solid var(--border-color);
+  box-shadow: var(--shadow-brutal-lg);
+  transition: var(--transition-brutal);
+}
+
+.brutal-box:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: 12px 12px 0px 0px var(--border-color);
+}
+
+.brutal-box:active {
+  transform: translate(4px, 4px);
+  box-shadow: none;
+}
+
+/* Neobrutalist Button Base */
+.neo-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  font-weight: 700;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: var(--border-width-thick) solid var(--color-black);
+  background-color: var(--accent);
+  color: var(--color-black);
+  box-shadow: var(--shadow-brutal);
+  transition: var(--transition-brutal);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.neo-button:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-brutal-md);
+}
+
+.neo-button:active {
+  transform: translate(4px, 4px);
+  box-shadow: none;
+}
+
+/* Stagger Animation Delays */
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+.stagger-5 { animation-delay: 0.5s; }
+.stagger-6 { animation-delay: 0.6s; }
+.stagger-7 { animation-delay: 0.7s; }
+.stagger-8 { animation-delay: 0.8s; }
+
+/* Text Shadow Utilities */
+.text-shadow-brutal {
+  text-shadow: 3px 3px 0px var(--color-black);
+}
+
+.text-shadow-brutal-lg {
+  text-shadow: 5px 5px 0px var(--color-black);
+}
+
+.text-shadow-brutal-xl {
+  text-shadow: 8px 8px 0px var(--color-black);
+}
+
+/* Selection Styles */
+::selection {
+  background-color: var(--accent);
+  color: var(--color-black);
+}
+
+/* Scrollbar Styling (Webkit) */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-main);
+  border-left: 3px solid var(--color-black);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border: 3px solid var(--color-black);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--secondary);
+}
+
+/* ============================================
+   📱 MOBILE OVERRIDES
+   ============================================ */
+
+@media (max-width: 768px) {
+  .mobile-compact {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+  }
+  
+  .mobile-title-hero {
+    font-size: clamp(3rem, 15vw, 6rem) !important;
+  }
 }

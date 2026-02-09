@@ -1,96 +1,432 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import { getCollection } from 'astro:content';
-import { BrutalistButton } from '../components/BrutalistButton';
-import { ReviewCard } from '../components/ReviewCard';
-import { Marquee } from '../components/Marquee';
-import { DecorativeShapes } from '../components/DecorativeShapes';
+import Layout from "../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+import { BrutalistButton } from "../components/BrutalistButton";
+import { ReviewCard } from "../components/ReviewCard";
+import { Marquee, DoubleMarquee } from "../components/Marquee";
+import { DecorativeShapes } from "../components/DecorativeShapes";
+import { GlitchText } from "../components/GlitchText";
+import { AnimatedBadge } from "../components/AnimatedBadge";
 
-const reviews = await getCollection('reviews');
+const reviews = await getCollection("reviews");
+
+// Marquee content as string arrays for Astro compatibility
+const topMarqueeItems = [
+  "OPEN SOURCE",
+  "GIT & GITHUB",
+  "PULL REQUESTS",
+  "COLLABORATION",
+];
+const bottomMarqueeItems = [
+  "FORK IT",
+  "CLONE IT",
+  "PUSH IT",
+  "MERGE IT",
+  "SHIP IT",
+];
+const ctaMarqueeItems = [
+  "YOUR FIRST PR AWAITS",
+  "FORK NOW",
+  "JOIN THE COMMUNITY",
+  "LEARN GIT TODAY",
+];
 ---
 
 <Layout>
   <div class="relative min-h-screen overflow-hidden">
     <DecorativeShapes client:load />
 
-    <main class="relative z-10 container mx-auto px-4 py-12 md:py-24 flex flex-col items-center text-center gap-8">
-      {/* Hero Section */}
-      <div class="relative inline-block mb-8">
-        <h1 class="text-6xl md:text-9xl tracking-tighter leading-[0.8] drop-shadow-[5px_5px_0px_rgba(0,0,0,1)]">
-          <span class="font-syne font-extrabold block md:inline">LET'S</span>
-          <span class="font-archivo font-normal block md:inline text-[var(--accent)]">GIT</span>
-          <span class="font-clash font-bold block md:inline">IT</span>
+    <!-- ============================================
+         🚀 HERO SECTION - TITLE IS KING
+         ============================================ -->
+    <main
+      class="relative z-10 container mx-auto px-4 py-8 md:py-16 lg:py-24 flex flex-col items-center text-center"
+    >
+      <!-- Badge -->
+      <div class="mb-6 md:mb-8">
+        <AnimatedBadge
+          client:load
+          variant="black"
+          rotate={8}
+          wobble={true}
+          size="md"
+        >
+          BY FOSS MEC ✦
+        </AnimatedBadge>
+      </div>
+
+      <!-- MAIN TITLE - MASSIVE & DOMINANT -->
+      <div class="relative w-full max-w-5xl mb-6 md:mb-10">
+        <h1
+          class="text-[4rem] sm:text-[6rem] md:text-[8rem] lg:text-[12rem] xl:text-[14rem]
+          leading-[0.85] tracking-tighter"
+          style="text-shadow: 5px 5px 0px rgba(0, 0, 0, 0.3);"
+        >
+          <span class="font-syne font-extrabold block text-[var(--text-main)]">
+            LET'S
+          </span>
+          <GlitchText
+            client:load
+            continuous={true}
+            className="font-archivo block text-[var(--accent)]"
+          >
+            GIT
+          </GlitchText>
+          <span class="font-clash font-bold block text-[var(--text-main)]">
+            IT!
+          </span>
         </h1>
-        <div class="absolute -top-6 -right-6 md:-right-12 bg-black text-white px-4 py-2 font-mono font-bold rotate-12 shadow-[4px_4px_0px_0px_var(--secondary)]">
-          BY FOSS MEC
+
+        <!-- Decorative Accent Lines -->
+        <div
+          class="hidden md:block absolute -left-8 top-1/2 w-16 h-4 bg-[var(--accent)] border-3 border-black -translate-y-1/2 animate-pulse-scale"
+        >
+        </div>
+        <div
+          class="hidden md:block absolute -right-8 top-1/3 w-12 h-12 bg-[var(--secondary)] border-3 border-black rotate-45 animate-float"
+        >
         </div>
       </div>
 
-      <p class="max-w-2xl text-2xl md:text-4xl font-black font-archivo border-4 border-black p-6 bg-white shadow-[var(--shadow-hard)] -rotate-1 mb-8 uppercase leading-tight text-black">
-        FORK. <span class="text-[var(--accent)]">COMMIT.</span> PUSH. <span class="text-[var(--secondary)]">REPEAT.</span>
-      </p>
+      <!-- TAGLINE - Compact on mobile -->
+      <div class="relative w-full max-w-2xl mb-8 md:mb-12">
+        <div
+          class="inline-block
+          border-4 border-black
+          p-4 md:p-6 lg:p-8
+          bg-white
+          shadow-[8px_8px_0px_0px_black]
+          -rotate-1
+          hover:rotate-0 hover:shadow-[12px_12px_0px_0px_black]
+          transition-all duration-300"
+        >
+          <p
+            class="text-lg sm:text-xl md:text-2xl lg:text-3xl
+            font-black font-archivo
+            uppercase leading-tight
+            text-black"
+          >
+            FORK. <span class="text-[var(--accent)]">COMMIT.</span> PUSH. <span
+              class="text-[var(--secondary)]">REPEAT.</span
+            >
+          </p>
+          <p
+            class="text-xs md:text-sm
+            font-mono font-bold
+            mt-2 md:mt-3
+            opacity-70"
+          >
+            Learn Git & GitHub through hands-on collaboration
+          </p>
+        </div>
+      </div>
 
-      <div class="flex flex-col md:flex-row gap-6 w-full md:w-auto px-4">
-        <BrutalistButton href="https://github.com/fossmec/lets-git-it" variant="primary" className="w-full md:w-auto">
-          Fork This Repo ->
+      <!-- CTA BUTTONS - Compact on mobile -->
+      <div
+        class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto px-4 sm:px-0"
+      >
+        <BrutalistButton
+          client:load
+          href="https://github.com/fossmec/lets-git-it"
+          variant="primary"
+          size="md"
+          className="w-full sm:w-auto"
+        >
+          Fork This Repo →
         </BrutalistButton>
-        <BrutalistButton href="#reviews" variant="secondary" className="w-full md:w-auto">
+
+        <BrutalistButton
+          client:load
+          href="#reviews"
+          variant="secondary"
+          size="md"
+          className="w-full sm:w-auto"
+        >
           See Participants
         </BrutalistButton>
       </div>
     </main>
 
-    {/* Marquee Section */}
-    <div class="my-16 border-y-4 border-black bg-[var(--accent)]">
-      <Marquee client:load speed={15}>
-        <span class="mx-8">OPEN SOURCE</span>
-        <span class="mx-8">✦</span>
-        <span class="mx-8">GIT & GITHUB</span>
-        <span class="mx-8">✦</span>
-        <span class="mx-8">PULL REQUESTS</span>
-        <span class="mx-8">✦</span>
-        <span class="mx-8">COLLABORATION</span>
-        <span class="mx-8">✦</span>
-        <span class="mx-8">NEO-BRUTALISM</span>
-        <span class="mx-8">✦</span>
-      </Marquee>
+    <!-- ============================================
+         📢 DOUBLE MARQUEE SECTION
+         ============================================ -->
+    <div class="my-12 md:my-20">
+      <DoubleMarquee
+        client:load
+        speed={30}
+        topItems={topMarqueeItems}
+        bottomItems={bottomMarqueeItems}
+        topSeparator="✦"
+        bottomSeparator="★"
+      />
     </div>
 
-    {/* Reviews Section */}
-    <section id="reviews" class="container mx-auto px-4 py-12 pb-32">
-      <div class="text-center mb-16">
-        <h2 class="text-4xl md:text-6xl font-black uppercase bg-black text-white inline-block px-8 py-2 rotate-2 shadow-[8px_8px_0px_0px_var(--accent)]">
-          Participants
-        </h2>
+    <!-- ============================================
+         👥 PARTICIPANTS / REVIEWS SECTION
+         ============================================ -->
+    <section
+      id="reviews"
+      class="container mx-auto px-4 py-12 md:py-20 pb-24 md:pb-32"
+    >
+      <!-- Section Title -->
+      <div class="text-center mb-12 md:mb-20 relative">
+        <div class="inline-block relative">
+          <h2
+            class="text-3xl sm:text-4xl md:text-6xl lg:text-7xl
+            font-black uppercase
+            bg-black text-white
+            px-6 md:px-12 py-3 md:py-4
+            border-4 border-black
+            shadow-[8px_8px_0px_0px_var(--accent)]
+            hover:shadow-[12px_12px_0px_0px_var(--accent)]
+            hover:-translate-x-1 hover:-translate-y-1
+            transition-all duration-300
+            rotate-1"
+          >
+            Participants
+          </h2>
+
+          <!-- Counter Badge -->
+          <div
+            class="absolute -top-4 -right-4 md:-top-6 md:-right-6
+            bg-[var(--accent)] text-black
+            w-12 h-12 md:w-16 md:h-16
+            flex items-center justify-center
+            font-black text-lg md:text-2xl
+            border-3 border-black
+            rotate-12
+            shadow-[3px_3px_0px_0px_black]
+            animate-pulse-scale"
+          >
+            {reviews.length}
+          </div>
+        </div>
+
+        <p
+          class="mt-6 md:mt-8 font-mono text-sm md:text-base opacity-80 max-w-md mx-auto"
+        >
+          These awesome people have submitted their first PR! 🎉
+        </p>
       </div>
 
-      {reviews.length > 0 ? (
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
-          {reviews.map((review, index) => (
-            <div class="h-full">
+      <!-- Reviews Grid -->
+      {
+        reviews.length > 0 ? (
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-10">
+            {reviews.map((review, index) => (
               <ReviewCard
+                client:visible
                 name={review.data.name}
                 bio={review.data.bio}
                 review={review.data.review}
                 socialLink={review.data.socialLink}
                 image={review.data.image}
+                color={review.data.color}
                 index={index}
               />
+            ))}
+          </div>
+        ) : (
+          <div class="text-center">
+            <div
+              class="
+            inline-block
+            font-mono text-lg md:text-xl 
+            border-4 border-black 
+            p-6 md:p-10 
+            bg-white 
+            max-w-lg 
+            shadow-[8px_8px_0px_0px_black]
+            hover:shadow-[12px_12px_0px_0px_var(--accent)]
+            transition-all duration-300
+          "
+            >
+              <p class="font-black text-2xl md:text-3xl mb-4">
+                🚀 Be The First!
+              </p>
+              <p class="opacity-80">
+                No participants yet. Fork the repo and submit your PR!
+              </p>
             </div>
-          ))}
-        </div>
-      ) : (
-        <div class="text-center font-mono text-xl border-4 border-black p-8 bg-white max-w-lg mx-auto shadow-[var(--shadow-hard)]">
-          No participants yet. Be the first to fork!
-        </div>
-      )}
+          </div>
+        )
+      }
     </section>
 
-    <footer class="bg-black text-white py-8 border-t-4 border-white mt-12">
-      <div class="container mx-auto px-4 text-center font-mono font-bold">
-        <p>BUILT WITH ASTRO + TAILWIND + REACT</p>
-        <p class="mt-2 text-sm opacity-50">© {new Date().getFullYear()} FOSS MEC</p>
+    <!-- ============================================
+         🎯 HOW IT WORKS SECTION
+         ============================================ -->
+    <section class="bg-black text-white py-16 md:py-24 border-y-4 border-white">
+      <div class="container mx-auto px-4">
+        <h2
+          class="text-3xl md:text-5xl lg:text-6xl
+          font-black text-center uppercase mb-12 md:mb-16
+          text-[var(--accent)]"
+        >
+          How It Works
+        </h2>
+
+        <div
+          class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 max-w-5xl mx-auto"
+        >
+          <!-- Step 1 -->
+          <div
+            class="relative p-6 md:p-8
+            bg-white text-black
+            border-4 border-white
+            shadow-[6px_6px_0px_0px_var(--accent)]
+            hover:shadow-[10px_10px_0px_0px_var(--accent)]
+            hover:-translate-y-2
+            transition-all duration-300"
+          >
+            <div
+              class="absolute -top-4 -left-4
+              w-12 h-12 md:w-14 md:h-14
+              bg-[var(--accent)] text-black
+              font-black text-2xl md:text-3xl
+              flex items-center justify-center
+              border-3 border-black
+              rotate-6"
+            >
+              1
+            </div>
+            <h3 class="font-black text-xl md:text-2xl uppercase mt-4 mb-3">
+              Fork
+            </h3>
+            <p class="font-mono text-sm opacity-80">
+              Click the fork button on our GitHub repo to create your own copy.
+            </p>
+          </div>
+
+          <!-- Step 2 -->
+          <div
+            class="relative p-6 md:p-8
+            bg-white text-black
+            border-4 border-white
+            shadow-[6px_6px_0px_0px_var(--secondary)]
+            hover:shadow-[10px_10px_0px_0px_var(--secondary)]
+            hover:-translate-y-2
+            transition-all duration-300"
+          >
+            <div
+              class="absolute -top-4 -left-4
+              w-12 h-12 md:w-14 md:h-14
+              bg-[var(--secondary)] text-black
+              font-black text-2xl md:text-3xl
+              flex items-center justify-center
+              border-3 border-black
+              -rotate-3"
+            >
+              2
+            </div>
+            <h3 class="font-black text-xl md:text-2xl uppercase mt-4 mb-3">
+              Add Your Review
+            </h3>
+            <p class="font-mono text-sm opacity-80">
+              Create a JSON file with your name, bio, and a fun review.
+            </p>
+          </div>
+
+          <!-- Step 3 -->
+          <div
+            class="relative p-6 md:p-8
+            bg-white text-black
+            border-4 border-white
+            shadow-[6px_6px_0px_0px_var(--accent)]
+            hover:shadow-[10px_10px_0px_0px_var(--accent)]
+            hover:-translate-y-2
+            transition-all duration-300"
+          >
+            <div
+              class="absolute -top-4 -left-4
+              w-12 h-12 md:w-14 md:h-14
+              bg-[var(--accent)] text-black
+              font-black text-2xl md:text-3xl
+              flex items-center justify-center
+              border-3 border-black
+              rotate-12"
+            >
+              3
+            </div>
+            <h3 class="font-black text-xl md:text-2xl uppercase mt-4 mb-3">
+              Submit PR
+            </h3>
+            <p class="font-mono text-sm opacity-80">
+              Open a pull request and see your name appear here!
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         📢 FINAL CTA MARQUEE
+         ============================================ -->
+    <div class="my-8 md:my-12">
+      <Marquee client:load speed={25} pauseOnHover={true}>
+        {
+          ctaMarqueeItems.map((item, i) => (
+            <>
+              <span class="mx-6 md:mx-10">{item}</span>
+              <span class="mx-4">★</span>
+            </>
+          ))
+        }
+      </Marquee>
+    </div>
+
+    <!-- ============================================
+         🦶 FOOTER
+         ============================================ -->
+    <footer
+      class="bg-black text-white py-8 md:py-12 border-t-4 border-[var(--accent)]"
+    >
+      <div class="container mx-auto px-4">
+        <div
+          class="flex flex-col md:flex-row items-center justify-between gap-6"
+        >
+          <!-- Logo/Title -->
+          <div class="text-center md:text-left">
+            <h3 class="font-black text-2xl md:text-3xl uppercase">
+              Let's <span class="text-[var(--accent)]">Git</span> It
+            </h3>
+            <p class="font-mono text-xs md:text-sm opacity-60 mt-1">
+              A Git & GitHub Workshop by FOSS MEC
+            </p>
+          </div>
+
+          <!-- Tech Stack -->
+          <div
+            class="flex flex-wrap justify-center gap-2 md:gap-3 font-mono text-xs uppercase"
+          >
+            <span
+              class="px-3 py-1 bg-[var(--accent)] text-black border-2 border-white font-bold"
+              >Astro</span
+            >
+            <span
+              class="px-3 py-1 bg-[var(--secondary)] text-black border-2 border-white font-bold"
+              >React</span
+            >
+            <span
+              class="px-3 py-1 bg-white text-black border-2 border-white font-bold"
+              >Tailwind</span
+            >
+          </div>
+
+          <!-- Copyright -->
+          <div class="text-center md:text-right font-mono text-xs opacity-60">
+            <p>© {new Date().getFullYear()} FOSS MEC</p>
+            <p class="mt-1">Made with ❤️ and lots of commits</p>
+          </div>
+        </div>
       </div>
     </footer>
   </div>
 </Layout>
+
+<style>
+  /* Ensure smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+</style>
