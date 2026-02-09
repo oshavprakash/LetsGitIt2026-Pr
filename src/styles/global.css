@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+@theme {
+  --font-syne: 'Syne', sans-serif;
+  --font-clash: 'Clash Display', sans-serif;
+  --font-space: 'Space Grotesk', sans-serif;
+  --font-archivo: 'Archivo Black', sans-serif;
+}
+
+:root {
+  /* Define colors explicitly for use in variables */
+  --color-lime: #a3e635;
+  --color-hotpink: #ff69b4;
+  --color-purple: #8b5cf6;
+  --color-blue: #3b82f6;
+  --color-yellow: #facc15;
+  --color-red: #ef4444;
+  --color-black: #000;
+  --color-white: #fff;
+  --color-cream: #fef9c3;
+  --color-orange: #f97316;
+
+  /* Default Theme (Lime) */
+  --bg-main: var(--color-lime);
+  --text-main: var(--color-black);
+  --accent: var(--color-hotpink);
+  --secondary: var(--color-purple);
+  --border-color: var(--color-black);
+
+  --shadow-hard: 5px 5px 0px 0px var(--color-black);
+  --shadow-hard-hover: 2px 2px 0px 0px var(--color-black);
+}
+
+/* Theme Classes */
+.theme-lime {
+  --bg-main: var(--color-lime);
+  --text-main: var(--color-black);
+  --accent: var(--color-hotpink);
+  --secondary: var(--color-purple);
+}
+
+.theme-purple {
+  --bg-main: var(--color-purple);
+  --text-main: var(--color-cream);
+  --accent: var(--color-orange);
+  --secondary: var(--color-lime);
+}
+
+.theme-blue {
+  --bg-main: var(--color-blue);
+  --text-main: var(--color-white);
+  --accent: var(--color-yellow);
+  --secondary: var(--color-red);
+}
+
+body {
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  font-family: 'Space Grotesk', sans-serif;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Archivo Black', sans-serif;
+  text-transform: uppercase;
+}

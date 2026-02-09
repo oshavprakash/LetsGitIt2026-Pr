@@ -1,0 +1,96 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import { BrutalistButton } from '../components/BrutalistButton';
+import { ReviewCard } from '../components/ReviewCard';
+import { Marquee } from '../components/Marquee';
+import { DecorativeShapes } from '../components/DecorativeShapes';
+
+const reviews = await getCollection('reviews');
+---
+
+<Layout>
+  <div class="relative min-h-screen overflow-hidden">
+    <DecorativeShapes client:load />
+
+    <main class="relative z-10 container mx-auto px-4 py-12 md:py-24 flex flex-col items-center text-center gap-8">
+      {/* Hero Section */}
+      <div class="relative inline-block mb-8">
+        <h1 class="text-6xl md:text-9xl tracking-tighter leading-[0.8] drop-shadow-[5px_5px_0px_rgba(0,0,0,1)]">
+          <span class="font-syne font-extrabold block md:inline">LET'S</span>
+          <span class="font-archivo font-normal block md:inline text-[var(--accent)]">GIT</span>
+          <span class="font-clash font-bold block md:inline">IT</span>
+        </h1>
+        <div class="absolute -top-6 -right-6 md:-right-12 bg-black text-white px-4 py-2 font-mono font-bold rotate-12 shadow-[4px_4px_0px_0px_var(--secondary)]">
+          BY FOSS MEC
+        </div>
+      </div>
+
+      <p class="max-w-2xl text-xl md:text-2xl font-bold font-mono border-4 border-black p-6 bg-white shadow-[var(--shadow-hard)] rotate-1 mb-8">
+        Master the art of Pull Requests. Fork the repo, add your mark, and watch it deploy.
+      </p>
+
+      <div class="flex flex-col md:flex-row gap-6">
+        <BrutalistButton href="https://github.com/fossmec/lets-git-it" variant="primary">
+          Fork This Repo ->
+        </BrutalistButton>
+        <BrutalistButton href="#reviews" variant="secondary">
+          See Participants
+        </BrutalistButton>
+      </div>
+    </main>
+
+    {/* Marquee Section */}
+    <div class="my-16 border-y-4 border-black bg-[var(--accent)]">
+      <Marquee client:load speed={15}>
+        <span class="mx-8">OPEN SOURCE</span>
+        <span class="mx-8">✦</span>
+        <span class="mx-8">GIT & GITHUB</span>
+        <span class="mx-8">✦</span>
+        <span class="mx-8">PULL REQUESTS</span>
+        <span class="mx-8">✦</span>
+        <span class="mx-8">COLLABORATION</span>
+        <span class="mx-8">✦</span>
+        <span class="mx-8">NEO-BRUTALISM</span>
+        <span class="mx-8">✦</span>
+      </Marquee>
+    </div>
+
+    {/* Reviews Section */}
+    <section id="reviews" class="container mx-auto px-4 py-12 pb-32">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl md:text-6xl font-black uppercase bg-black text-white inline-block px-8 py-2 rotate-2 shadow-[8px_8px_0px_0px_var(--accent)]">
+          Participants
+        </h2>
+      </div>
+
+      {reviews.length > 0 ? (
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
+          {reviews.map((review, index) => (
+            <div class="h-full">
+              <ReviewCard
+                name={review.data.name}
+                bio={review.data.bio}
+                review={review.data.review}
+                socialLink={review.data.socialLink}
+                image={review.data.image}
+                index={index}
+              />
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div class="text-center font-mono text-xl border-4 border-black p-8 bg-white max-w-lg mx-auto shadow-[var(--shadow-hard)]">
+          No participants yet. Be the first to fork!
+        </div>
+      )}
+    </section>
+
+    <footer class="bg-black text-white py-8 border-t-4 border-white mt-12">
+      <div class="container mx-auto px-4 text-center font-mono font-bold">
+        <p>BUILT WITH ASTRO + TAILWIND + REACT</p>
+        <p class="mt-2 text-sm opacity-50">© {new Date().getFullYear()} FOSS MEC</p>
+      </div>
+    </footer>
+  </div>
+</Layout>

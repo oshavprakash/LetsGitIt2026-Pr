@@ -1,0 +1,36 @@
+---
+import '../styles/global.css';
+
+// Font Imports
+import '@fontsource/syne/800.css'; // For "LET'S"
+import '@fontsource/space-grotesk/300.css';
+import '@fontsource/space-grotesk/400.css';
+import '@fontsource/space-grotesk/500.css';
+import '@fontsource/space-grotesk/600.css';
+import '@fontsource/space-grotesk/700.css';
+import '@fontsource/archivo-black/400.css'; // Archivo Black is inherently bold
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+
+        <!-- Clash Display Font from Fontshare (200-700) -->
+        <link href="https://api.fontshare.com/v2/css?f[]=clash-display@200,300,400,500,600,700&display=swap" rel="stylesheet">
+
+		<title>Let's Git It</title>
+        <script is:inline>
+            // Random Theme Logic
+            const themes = ['theme-lime', 'theme-purple', 'theme-blue'];
+            const randomTheme = themes[Math.floor(Math.random() * themes.length)];
+            document.documentElement.classList.add(randomTheme);
+        </script>
+	</head>
+	<body class="min-h-screen">
+		<slot />
+	</body>
+</html>
