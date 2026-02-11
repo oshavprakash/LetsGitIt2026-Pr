@@ -6,12 +6,12 @@ A Git and GitHub workshop by FOSS MEC. Add your review card by submitting a PR.
 
 ### 1. Fork the Repository
 
-Click the **Fork** button on [github.com/fossmec/lets-git-it](https://github.com/fossmec/lets-git-it)
+Click the **Fork** button on [https://github.com/FossMec/LetsGitIt2026-Pr](https://github.com/fossmec/lets-git-it)
 
 ### 2. Clone Your Fork
 
 ```bash
-git clone https://github.com/YOUR-USERNAME/lets-git-it.git
+git clone https://github.com/YOUR-USERNAME/LetsGitIt2026-Pr
 cd lets-git-it
 ```
 
@@ -32,6 +32,7 @@ Create a new file at `src/content/reviews/your-name.json`:
 ```
 
 **Fields:**
+
 - `name` - Your display name (required)
 - `bio` - Short tagline (optional)
 - `review` - Your message (required)

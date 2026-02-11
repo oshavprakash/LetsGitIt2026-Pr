@@ -76,12 +76,13 @@ export const BrutalistButton: React.FC<BrutalistButtonProps> = ({
   );
 
   if (href) {
+    const isExternal = href.startsWith('http');
     return (
       <motion.a
         href={href}
         className={`${baseStyles} ${variantStyles[variant]} ${sizeStyles[size]} ${wobbleAnimation} ${className}`}
-        target="_blank"
-        rel="noopener noreferrer"
+        target={isExternal ? "_blank" : undefined}
+        rel={isExternal ? "noopener noreferrer" : undefined}
         variants={buttonVariants}
         initial="initial"
         whileHover="hover"

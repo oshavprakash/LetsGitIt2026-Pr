@@ -25,26 +25,41 @@ const { title = "Let's Git It" } = Astro.props;
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
 
-		<!-- SEO -->
+		<!-- Basic Metadata -->
+		<title>{title}</title>
+		<meta name="title" content={title} />
 		<meta
 			name="description"
 			content="Let's Git It - A fun Git & GitHub workshop by FOSS MEC. Learn version control through hands-on collaboration."
 		/>
+		<meta name="author" content="dijith-481 (dijithdinesh481@gmail.com)" />
 		<meta
 			name="keywords"
-			content="git, github, open source, foss, mec, workshop, version control"
+			content="git, github, open source, foss, mec, workshop, version control, lets-git-it"
 		/>
 
-		<!-- Open Graph -->
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="https://lets-git-it-2026.onrender.com/" />
 		<meta property="og:title" content={title} />
 		<meta
 			property="og:description"
 			content="Learn Git & GitHub through hands-on collaboration. Submit your first PR!"
 		/>
-		<meta property="og:type" content="website" />
+		<meta property="og:image" content="https://lets-git-it-2026.onrender.com/preview.png" />
+
+		<!-- Twitter -->
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:url" content="https://lets-git-it-2026.onrender.com/" />
+		<meta property="twitter:title" content={title} />
+		<meta
+			property="twitter:description"
+			content="Learn Git & GitHub through hands-on collaboration. Submit your first PR!"
+		/>
+		<meta property="twitter:image" content="https://lets-git-it-2026.onrender.com/preview.png" />
 
 		<!-- Clash Display Font from Fontshare -->
 		<link
